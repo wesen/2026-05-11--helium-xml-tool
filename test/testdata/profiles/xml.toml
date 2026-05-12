@@ -1,0 +1,13 @@
+[xml]
+version = 1
+
+[catalog]
+files = ["test/testdata/catalog/catalog.xml"]
+
+[validation.invoice]
+description = "Invoice validation pipeline"
+files = "test/testdata/valid/invoice*.xml"
+
+[[validation.invoice.steps]]
+type = "xsd"
+schema = "test/testdata/schemas/invoice.xsd"

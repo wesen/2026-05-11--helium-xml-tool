@@ -215,13 +215,14 @@ func (c *ValidateCommand) RunIntoGlazeProcessor(
 	}
 
 	// Output in the requested format
+	var writeErr error
 	switch s.Format {
 	case "sarif":
-		return output.WriteSARIF(allResults, "xml", "0.1.0", os.Stdout)
+		writeErr = output.WriteSARIF(allResults, "xml", "0.1.0", os.Stdout)
 	case "github":
-		return output.WriteGitHubAnnotations(allResults, os.Stdout)
+		writeErr = output.WriteGitHubAnnotations(allResults, os.Stdout)
 	case "junit":
-		return output.WriteJUnit(allResults, os.Stdout)
+		writeErr = output.WriteJUnit(allResults, os.Stdout)
 	default:
 		// Glazed table/JSON/YAML output
 		for _, r := range allResults {
@@ -243,6 +244,9 @@ func (c *ValidateCommand) RunIntoGlazeProcessor(
 		}
 	}
 
+	if writeErr != nil {
+		return writeErr
+	}
 	if hasErrors {
 		return ErrValidationFailed
 	}

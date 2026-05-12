@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- Missing required elements and attributes -->
+<invoice>
+  <customer>
+    <name>Bad Corp</name>
+  </customer>
+  <line item="Widget" quantity="abc"/>
+  <total>not-a-number</total>
+</invoice>

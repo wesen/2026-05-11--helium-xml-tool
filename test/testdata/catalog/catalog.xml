@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <system systemId="http://example.com/invoice.xsd" uri="../schemas/invoice.xsd"/>
+  <public publicId="-//TEST//DTD Invoice//EN" uri="invoice.dtd"/>
+</catalog>

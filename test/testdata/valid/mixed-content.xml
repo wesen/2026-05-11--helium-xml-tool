@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<root>
+  <child1>
+    <grandchild1>deep</grandchild1>
+    <grandchild2>deeper</grandchild2>
+  </child1>
+  <child2 attr1="a" attr2="b" attr3="c">
+    <item id="1">one</item>
+    <item id="2">two</item>
+    <item id="3">three</item>
+  </child2>
+  <empty/>
+  <with-text>  whitespace  </with-text>
+</root>

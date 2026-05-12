@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A comprehensive valid invoice for testing -->
+<invoice version="2.0">
+  <customer>
+    <name>Acme Corporation</name>
+    <address>456 Industrial Blvd, Springfield</address>
+  </customer>
+  <line item="Widget A" quantity="100" unit-price="5.50"/>
+  <line item="Gadget B" quantity="50" unit-price="12.00"/>
+  <line item="Doohickey C" quantity="25" unit-price="8.75"/>
+  <total>1187.50</total>
+</invoice>

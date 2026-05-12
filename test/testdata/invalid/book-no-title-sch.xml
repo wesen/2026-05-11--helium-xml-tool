@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!-- Book without title - should fail Schematron -->
+<book><author>Jane Doe</author></book>

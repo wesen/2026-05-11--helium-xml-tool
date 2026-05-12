@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<invoice version="1.0">
+  <customer>
+    <name>Acme Corp</name>
+    <address>123 Main St</address>
+  </customer>
+  <line item="Widget" quantity="10" unit-price="5.00"/>
+  <line item="Gadget" quantity="5" unit-price="12.50"/>
+  <total>112.50</total>
+</invoice>

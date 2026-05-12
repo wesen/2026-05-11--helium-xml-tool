@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<invoice version="1.0">
+  <customer>
+    <name>Acme Corp</name>
+  </customer>
+  <line item="Widget" quantity="10"/>
+  <total>abc</total>
+</invoice>

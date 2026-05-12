@@ -630,7 +630,7 @@ func TestExplainError_UnknownCode(t *testing.T) {
 	if code != 0 {
 		t.Fatalf("exit=%d", code)
 	}
-	if !strings.Contains(stdout, "Unknown") {
+	if !strings.Contains(stdout, "not in the database") && !strings.Contains(stdout, "Unknown") {
 		t.Errorf("expected unknown code message, got: %s", stdout)
 	}
 }

@@ -147,9 +147,10 @@ Translates W3C XML Schema validation error codes into human-readable prose with 
 
 ```bash
 xml explain-error --code <cvc-code>
+xml explain-error --code <cvc-code> --with-glaze-output   # structured table/JSON/YAML
 ```
 
-Supported codes include the 15 most common `cvc-*` codes: `cvc-complex-type.2.4.a` (unexpected child element), `cvc-datatype-valid.1.2.1` (invalid value for type), `cvc-enumeration-valid` (value not in enumeration), and more. The output includes the code, a plain-English explanation, a list of likely causes, and suggested `xml` commands for further investigation.
+Supported codes include the 15 most common `cvc-*` codes. By default, the command outputs human-readable prose with the error code, summary, meaning, numbered causes, and suggested fixes. Use `--with-glaze-output` to switch to structured output (table, JSON, YAML, CSV) for scripting. Use `--list` to see all known codes. Use `--message` to extract the code from a full error message.
 
 ### xml schema
 

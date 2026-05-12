@@ -15,6 +15,7 @@ import (
 	"github.com/go-go-golems/xml/pkg/cmds/validate"
 	"github.com/go-go-golems/xml/pkg/cmds/xpath"
 	"github.com/go-go-golems/xml/pkg/cmds/xsl"
+	"github.com/go-go-golems/xml/doc"
 )
 
 // Version is set at build time via -ldflags.
@@ -38,6 +39,9 @@ Built on the helium Go XML engine and the Glazed command framework.`,
 	}
 
 	helpSystem := help.NewHelpSystem()
+	if err := doc.AddDocsToHelpSystem(helpSystem); err != nil {
+		return nil, err
+	}
 	help_cmd.SetupCobraRootCommand(helpSystem, rootCmd)
 
 	// Register command groups

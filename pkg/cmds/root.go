@@ -12,6 +12,7 @@ import (
 	"github.com/go-go-golems/xml/pkg/cmds/lint"
 	"github.com/go-go-golems/xml/pkg/cmds/schema"
 	"github.com/go-go-golems/xml/pkg/cmds/sch"
+	"github.com/go-go-golems/xml/pkg/cmds/serve_help"
 	"github.com/go-go-golems/xml/pkg/cmds/validate"
 	"github.com/go-go-golems/xml/pkg/cmds/xpath"
 	"github.com/go-go-golems/xml/pkg/cmds/xsl"
@@ -38,6 +39,7 @@ Built on the helium Go XML engine and the Glazed command framework.`,
 		return nil, err
 	}
 
+	// Help system — load embedded docs and wire Cobra help
 	helpSystem := help.NewHelpSystem()
 	if err := doc.AddDocsToHelpSystem(helpSystem); err != nil {
 		return nil, err
@@ -70,6 +72,11 @@ Built on the helium Go XML engine and the Glazed command framework.`,
 		return nil, err
 	}
 	if err := xsl.Register(rootCmd); err != nil {
+		return nil, err
+	}
+
+	// Serve-help: needs the help system to serve its docs over HTTP
+	if err := serve_help.RegisterServeHelp(rootCmd, helpSystem); err != nil {
 		return nil, err
 	}
 

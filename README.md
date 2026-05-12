@@ -55,6 +55,10 @@ xml xsl unused --stylesheet transform.xsl
 
 # Detect billion laughs attacks in a DTD
 xml dtd entities --dtd legacy.dtd
+
+# Browse help docs in a web browser
+xml serve-help
+xml serve-help --address :9090
 ```
 
 ## Commands
@@ -70,6 +74,7 @@ xml dtd entities --dtd legacy.dtd
 | `xml dtd` | DTD analysis: inspect, flatten, entities, audit |
 | `xml sch` | Schematron: validate, compile, test, report, coverage |
 | `xml xsl` | XSLT: run, list, refs, unused, graph, deps |
+| `xml serve-help` | Browse help docs in a web browser |
 
 ### Schema Workbench (`xml schema`)
 

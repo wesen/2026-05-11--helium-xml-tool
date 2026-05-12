@@ -26,3 +26,5 @@ coverage.out
 
 # Docmgr
 ttmp/
+.playwright-mcp/
+serve-help-spa.png

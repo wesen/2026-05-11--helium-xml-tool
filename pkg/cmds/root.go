@@ -1,6 +1,8 @@
 package cmds
 
 import (
+	"context"
+
 	"github.com/go-go-golems/glazed/pkg/cmds/logging"
 	"github.com/go-go-golems/glazed/pkg/help"
 	help_cmd "github.com/go-go-golems/glazed/pkg/help/cmd"
@@ -42,6 +44,10 @@ Built on the helium Go XML engine and the Glazed command framework.`,
 	// Help system — load embedded docs and wire Cobra help
 	helpSystem := help.NewHelpSystem()
 	if err := doc.AddDocsToHelpSystem(helpSystem); err != nil {
+		return nil, err
+	}
+	// Assign package name to sections so the SPA can filter by package
+	if err := helpSystem.Store.SetDefaultPackage(context.Background(), "xml", ""); err != nil {
 		return nil, err
 	}
 	help_cmd.SetupCobraRootCommand(helpSystem, rootCmd)

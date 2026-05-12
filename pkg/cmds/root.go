@@ -7,8 +7,10 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/go-go-golems/xml/pkg/cmds/catalog"
+	"github.com/go-go-golems/xml/pkg/cmds/dtd"
 	"github.com/go-go-golems/xml/pkg/cmds/explain_error"
 	"github.com/go-go-golems/xml/pkg/cmds/lint"
+	"github.com/go-go-golems/xml/pkg/cmds/schema"
 	"github.com/go-go-golems/xml/pkg/cmds/validate"
 	"github.com/go-go-golems/xml/pkg/cmds/xpath"
 )
@@ -50,6 +52,12 @@ Built on the helium Go XML engine and the Glazed command framework.`,
 		return nil, err
 	}
 	if err := explain_error.Register(rootCmd); err != nil {
+		return nil, err
+	}
+	if err := schema.Register(rootCmd); err != nil {
+		return nil, err
+	}
+	if err := dtd.Register(rootCmd); err != nil {
 		return nil, err
 	}
 

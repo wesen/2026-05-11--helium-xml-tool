@@ -1,0 +1,29 @@
+<!ELEMENT book (title, author+, genre, isbn, price, published?)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (firstName, lastName, email?)>
+<!ELEMENT firstName (#PCDATA)>
+<!ELEMENT lastName (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT genre (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT published (#PCDATA)>
+
+<!ATTLIST book version CDATA #IMPLIED
+               lang CDATA "en">
+<!ATTLIST author id ID #REQUIRED>
+
+<!-- Dangerous entity: recursive expansion pattern -->
+<!ENTITY boom "&boom1;&boom1;">
+<!ENTITY boom1 "&boom2;&boom2;&boom2;&boom2;">
+<!ENTITY boom2 "&boom3;&boom3;&boom3;&boom3;&boom3;&boom3;">
+
+<!-- External entity (security concern) -->
+<!ENTITY extdata SYSTEM "file:///etc/passwd">
+
+<!-- Normal parameter entity -->
+<!ENTITY % common "common.dtd">
+%common;
+
+<!-- Notation -->
+<!NOTATION pdf SYSTEM "application/pdf">

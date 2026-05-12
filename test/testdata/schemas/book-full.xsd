@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/book"
+           xmlns:bk="http://example.com/book"
+           elementFormDefault="qualified">
+
+  <!-- Root element -->
+  <xs:element name="book" type="bk:BookType"/>
+
+  <!-- Simple type: genre enumeration -->
+  <xs:simpleType name="GenreType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="fiction"/>
+      <xs:enumeration value="non-fiction"/>
+      <xs:enumeration value="technical"/>
+      <xs:enumeration value="poetry"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Simple type: ISBN pattern -->
+  <xs:simpleType name="ISBNType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{3}-\d{1,5}-\d{1,5}-\d{1,5}"/>
+      <xs:minLength value="10"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Complex type: AuthorType -->
+  <xs:complexType name="AuthorType">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string"/>
+      <xs:element name="lastName" type="xs:string"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <!-- Complex type: BookType -->
+  <xs:complexType name="BookType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="author" type="bk:AuthorType"/>
+      <xs:element name="genre" type="bk:GenreType"/>
+      <xs:element name="isbn" type="bk:ISBNType"/>
+      <xs:element name="price" type="xs:decimal"/>
+      <xs:element name="published" type="xs:date" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="lang" type="xs:string" default="en"/>
+  </xs:complexType>
+
+  <!-- Abstract type for extended book types -->
+  <xs:complexType name="ExtendedBookType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="bk:BookType">
+        <xs:sequence>
+          <xs:element name="notes" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Concrete extension: TextbookType -->
+  <xs:complexType name="TextbookType">
+    <xs:complexContent>
+      <xs:extension base="bk:ExtendedBookType">
+        <xs:sequence>
+          <xs:element name="course" type="xs:string"/>
+          <xs:element name="edition" type="xs:positiveInteger"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Element declared but never referenced (for lint testing) -->
+  <xs:element name="publisher" type="xs:string"/>
+
+</xs:schema>

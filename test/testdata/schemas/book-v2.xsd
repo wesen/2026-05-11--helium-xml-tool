@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/book"
+           xmlns:bk="http://example.com/book"
+           elementFormDefault="qualified">
+
+  <!-- Root element -->
+  <xs:element name="book" type="bk:BookType"/>
+
+  <!-- Genre: added "children" enum value (SAFE) -->
+  <xs:simpleType name="GenreType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="fiction"/>
+      <xs:enumeration value="non-fiction"/>
+      <xs:enumeration value="technical"/>
+      <xs:enumeration value="poetry"/>
+      <xs:enumeration value="children"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ISBN: unchanged -->
+  <xs:simpleType name="ISBNType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{3}-\d{1,5}-\d{1,5}-\d{1,5}"/>
+      <xs:minLength value="10"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- AuthorType: email now required (BREAKING) -->
+  <xs:complexType name="AuthorType">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string"/>
+      <xs:element name="lastName" type="xs:string"/>
+      <xs:element name="email" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <!-- BookType: removed "description" (BREAKING), added "subtitle" (SAFE) -->
+  <xs:complexType name="BookType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="subtitle" type="xs:string" minOccurs="0"/>
+      <xs:element name="author" type="bk:AuthorType"/>
+      <xs:element name="genre" type="bk:GenreType"/>
+      <xs:element name="isbn" type="bk:ISBNType"/>
+      <xs:element name="price" type="xs:decimal"/>
+      <xs:element name="published" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="lang" type="xs:string" default="en"/>
+    <!-- Added required attribute "currency" (BREAKING) -->
+    <xs:attribute name="currency" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- ExtendedBookType: now concrete (was abstract) (SAFE) -->
+  <xs:complexType name="ExtendedBookType">
+    <xs:complexContent>
+      <xs:extension base="bk:BookType">
+        <xs:sequence>
+          <xs:element name="notes" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- TextbookType: unchanged -->
+  <xs:complexType name="TextbookType">
+    <xs:complexContent>
+      <xs:extension base="bk:ExtendedBookType">
+        <xs:sequence>
+          <xs:element name="course" type="xs:string"/>
+          <xs:element name="edition" type="xs:positiveInteger"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- REMOVED: publisher element (BREAKING) -->
+
+  <!-- NEW: ReviewType (SAFE) -->
+  <xs:complexType name="ReviewType">
+    <xs:sequence>
+      <xs:element name="reviewer" type="xs:string"/>
+      <xs:element name="rating" type="xs:positiveInteger"/>
+      <xs:element name="comment" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

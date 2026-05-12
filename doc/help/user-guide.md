@@ -115,17 +115,18 @@ Key flags:
 Evaluates XPath expressions against an XML document. Supports XPath 1.0 and XPath 3.1.
 
 ```bash
-xml xpath <file> --expr <expression> [--xpath3] [--output table|json|yaml|csv]
+xml xpath <expression> <file> [--engine 1|3] [--output table|json|yaml|csv]
 ```
 
 Key flags:
 
 | Flag | Purpose |
 |------|---------|
-| `--expr` | XPath expression to evaluate (required) |
-| `--xpath3` | Use XPath 3.1 instead of XPath 1.0 |
+| `--engine` | XPath engine version: `1` for XPath 1.0, `3` for XPath 3.1 (default: `3`) |
 
-XPath 1.0 is the default. XPath 3.1 provides additional functions (`array`, `map`, `sort`, `filter`, `for-each`) and a richer type system. The output includes the result type, value, and XPath type classification.
+The expression is a positional argument (not a flag). This means you write `xml xpath '//book/title' doc.xml`, not `xml xpath --expr '//book/title' doc.xml`.
+
+XPath 3.1 is the default. It provides additional functions (`array`, `map`, `sort`, `string-join`, `for-each`) and a richer type system. Use `--engine 1` for XPath 1.0 compatibility. The output includes the result type, value, and XPath type classification.
 
 ### xml catalog
 

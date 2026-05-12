@@ -36,7 +36,10 @@ xml lint doc.xml --format
 xml xsl run --stylesheet transform.xsl --input doc.xml
 
 # Evaluate XPath
-xml xpath doc.xml --expr "//book/title"
+xml xpath '//book/title' doc.xml
+
+# XPath 1.0 mode
+xml xpath 'count(//item)' doc.xml --engine 1
 
 # Explain a cryptic validation error
 xml explain-error --code cvc-complex-type.2.4.a

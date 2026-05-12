@@ -115,16 +115,16 @@ The `lint` command also supports canonicalization (`--c14n`), XInclude processin
 Find all element names in the document:
 
 ```bash
-xml xpath book.xml --expr "//*/local-name()"
+xml xpath '//*/local-name()' book.xml
 ```
 
 Or select specific elements:
 
 ```bash
-xml xpath book.xml --expr "//book/title" --output json
+xml xpath '//book/title' book.xml --output json
 ```
 
-The XPath command supports both XPath 1.0 (the default) and XPath 3.1 (with `--xpath3`). XPath 3.1 provides additional functions like `array`, `map`, and `sort` that are not available in XPath 1.0.
+The XPath command supports both XPath 1.0 and XPath 3.1. XPath 3.1 is the default; use `--engine 1` for XPath 1.0. XPath 1.0 is useful for compatibility with tools that expect XPath 1.0 semantics. XPath 3.1 provides additional functions like `array`, `map`, `sort`, and `string-join` that are not available in XPath 1.0.
 
 ## Step 5: Explain a validation error
 

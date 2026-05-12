@@ -224,7 +224,7 @@ func (c *LintCommand) RunIntoGlazeProcessor(
 			SubstituteEnt: s.Noent,
 			LoadDTD:       s.LoadDTD,
 			ValidateDTD:   s.ValidateDTD,
-			StripBlanks:   s.NoBlanks,
+			StripBlanks:   s.NoBlanks || s.Format, // strip blank text nodes before re-indenting
 			CleanNS:       s.CleanNS,
 			MergeCDATA:    s.MergeCDATA,
 			NoNetwork:     s.NoNetwork,

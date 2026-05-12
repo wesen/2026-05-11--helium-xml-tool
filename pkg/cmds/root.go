@@ -11,8 +11,10 @@ import (
 	"github.com/go-go-golems/xml/pkg/cmds/explain_error"
 	"github.com/go-go-golems/xml/pkg/cmds/lint"
 	"github.com/go-go-golems/xml/pkg/cmds/schema"
+	"github.com/go-go-golems/xml/pkg/cmds/sch"
 	"github.com/go-go-golems/xml/pkg/cmds/validate"
 	"github.com/go-go-golems/xml/pkg/cmds/xpath"
+	"github.com/go-go-golems/xml/pkg/cmds/xsl"
 )
 
 // Version is set at build time via -ldflags.
@@ -58,6 +60,12 @@ Built on the helium Go XML engine and the Glazed command framework.`,
 		return nil, err
 	}
 	if err := dtd.Register(rootCmd); err != nil {
+		return nil, err
+	}
+	if err := sch.Register(rootCmd); err != nil {
+		return nil, err
+	}
+	if err := xsl.Register(rootCmd); err != nil {
 		return nil, err
 	}
 

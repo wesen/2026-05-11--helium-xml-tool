@@ -17,6 +17,31 @@ git clone https://github.com/go-go-golems/xml.git
 cd xml && make build
 ```
 
+## Getting Help
+
+The `xml` CLI ships with built-in documentation you can read in the terminal or browse in a web browser.
+
+```bash
+# List all help topics
+xml help
+
+# Read a specific topic
+xml help getting-started
+xml help user-guide
+xml help validation-pipeline
+xml help output-formats
+
+# Browse help as a web application (with search, filtering, and a React UI)
+xml serve-help
+xml serve-help --address :9090
+```
+
+The `getting-started` tutorial walks you through your first validation, lint, and XPath query in under 5 minutes:
+
+```bash
+xml help getting-started
+```
+
 ## Quick Start
 
 ```bash
@@ -55,10 +80,6 @@ xml xsl unused --stylesheet transform.xsl
 
 # Detect billion laughs attacks in a DTD
 xml dtd entities --dtd legacy.dtd
-
-# Browse help docs in a web browser
-xml serve-help
-xml serve-help --address :9090
 ```
 
 ## Commands
